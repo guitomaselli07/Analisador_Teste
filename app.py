@@ -445,18 +445,13 @@ def professores(titulo, espaco1, descricao1, descricao2, dados2):
     grafico_professores(escolha_IES, escolha_GRAFICOS, dados2)
 
 @st.cache(allow_output_mutation=True, show_spinner=False)
-def load_data_alunos():
+def load_data_alunos1():
 
   dados1_alunos = pd.read_csv('SUP_ALUNO1.CSV', sep='|', encoding='utf8')
   dados2_alunos = pd.read_csv('SUP_ALUNO2.CSV', sep='|', encoding='utf8')
   dados3_alunos = pd.read_csv('SUP_ALUNO3.CSV', sep='|', encoding='utf8')
   dados4_alunos = pd.read_csv('SUP_ALUNO4.CSV', sep='|', encoding='utf8')
   dados5_alunos = pd.read_csv('SUP_ALUNO5.CSV', sep='|', encoding='utf8')
-  dados6_alunos = pd.read_csv('SUP_ALUNO6.CSV', sep='|', encoding='utf8')
-  dados7_alunos = pd.read_csv('SUP_ALUNO7.CSV', sep='|', encoding='utf8')
-  dados8_alunos = pd.read_csv('SUP_ALUNO8.CSV', sep='|', encoding='utf8')
-  dados9_alunos = pd.read_csv('SUP_ALUNO9.CSV', sep='|', encoding='utf8')
-  dados10_alunos = pd.read_csv('SUP_ALUNO10.CSV', sep='|', encoding='utf8')
   dados11_alunos = pd.read_csv('SUP_ALUNO11.CSV', sep='|', encoding='utf8')
   dados12_alunos = pd.read_csv('SUP_ALUNO12.CSV', sep='|', encoding='utf8')
   dados13_alunos = pd.read_csv('SUP_ALUNO13.CSV', sep='|', encoding='utf8')
@@ -472,12 +467,25 @@ def load_data_alunos():
   dados23_alunos = pd.read_csv('SUP_ALUNO23.CSV', sep='|', encoding='utf8')
   dados24_alunos = pd.read_csv('SUP_ALUNO24.CSV', sep='|', encoding='utf8')
   dados25_alunos = pd.read_csv('SUP_ALUNO25.CSV', sep='|', encoding='utf8')
-  dados_ALUNOS = pd.concat([dados1_alunos, dados2_alunos, dados3_alunos, dados4_alunos, dados5_alunos, dados6_alunos, dados7_alunos, dados8_alunos, dados9_alunos, dados10_alunos])
+  dados_ALUNOS = pd.concat([dados1_alunos, dados2_alunos, dados3_alunos, dados4_alunos, dados5_alunos])
   dados_IES = pd.read_csv('SUP_IES_2019.CSV', sep='|', encoding='utf8')
   dados_CURSO = pd.read_csv('SUP_CURSO_2019.CSV', sep='|', encoding='utf8')
-  dados_TOTAIS1 = dados_ALUNOS.merge(dados_IES, how='outer')
-  dados_TOTAIS2 = dados_TOTAIS1.merge(dados_CURSO, how='outer')
-  return dados_TOTAIS2 
+  dados = dados_ALUNOS.merge(dados_IES, how='outer').merge(dados_CURSO, how='outer')
+  return dados
+
+@st.cache(allow_output_mutation=True, show_spinner=False)
+def load_data_alunos2():
+  
+  dados6_alunos = pd.read_csv('SUP_ALUNO6.CSV', sep='|', encoding='utf8')
+  dados7_alunos = pd.read_csv('SUP_ALUNO7.CSV', sep='|', encoding='utf8')
+  dados8_alunos = pd.read_csv('SUP_ALUNO8.CSV', sep='|', encoding='utf8')
+  dados9_alunos = pd.read_csv('SUP_ALUNO9.CSV', sep='|', encoding='utf8')
+  dados10_alunos = pd.read_csv('SUP_ALUNO10.CSV', sep='|', encoding='utf8')
+  dados_ALUNOS = pd.concat([dados6_alunos, dados7_alunos, dados8_alunos, dados9_alunos, dados10_alunos])
+  dados_IES = pd.read_csv('SUP_IES_2019.CSV', sep='|', encoding='utf8')
+  dados_CURSO = pd.read_csv('SUP_CURSO_2019.CSV', sep='|', encoding='utf8')
+  dados = dados_ALUNOS.merge(dados_IES, how='outer').merge(dados_CURSO, how='outer')
+  return dados
 
 @st.cache(allow_output_mutation=True, show_spinner=False)
 def load_data_professores():
@@ -493,7 +501,9 @@ if __name__ == '__main__':
   titulo_inicial = st.title('Realizando a Leitura dos Dados...')
   espaco_inicial = st.subheader('')
   descricao_inicial = st.subheader('Por favor aguarde um momento, a aplicação já irá iniciar.')
-  dados1 = load_data_alunos()
+  parte1 = load_data_alunos1()
+  parte2 = load_data_alunos2()
+  dados1 = pd.concat([parte1, parte2])
   dados2 = load_data_professores()
   titulo_inicial.empty()
   espaco_inicial.empty()
