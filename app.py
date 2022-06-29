@@ -2,6 +2,7 @@ import plotly.graph_objects as go
 import streamlit as st
 import pandas as pd
 
+
 def grafico_estudantes(IES, CURSO, GRAFICOS, dados1):
 
   if(len(GRAFICOS) == 0):
@@ -38,13 +39,18 @@ def grafico_estudantes(IES, CURSO, GRAFICOS, dados1):
           maiorcount = max(y_masculino1)
           if(max(y_feminino1) > max(y_masculino1)):
             maiorcount = max(y_feminino1)
+            
+        if maiorcount > 500:
+          n = 250
+        else:
+          n = 50    
 
         situacoes = ['Total', 'Cursando', 'Matricula<br>Trancada', 'Desvinculados', 'Transferidos', 'Formados', 'Falecidos']
 
         fig1 = go.Figure(data=[go.Bar(name = 'Homens', x = situacoes, y = y_masculino1, text = y_masculino1, marker_pattern_shape="/"), go.Bar(name = 'Mulheres', x = situacoes, y= y_feminino1, text = y_feminino1, marker_pattern_shape="x", marker_color='#f63366')])
 
         fig1.update_xaxes(tickfont_size=11)
-        fig1.update_yaxes(range = [0, maiorcount+50], tickfont_size=11, showgrid = False)
+        fig1.update_yaxes(range = [0, maiorcount+n], tickfont_size=11, showgrid = False)
         fig1.update_traces(textposition = 'outside', textfont_size=11)
         fig1.update_layout(title_text = f'Quantidade de Estudantes entre Homens e Mulheres por Situações no Curso de<br>{CURSO} da {IES} no Ano de 2019', legend=dict(yanchor = 'top', y = 1, xanchor = 'right', x = 1))
 
@@ -75,13 +81,18 @@ def grafico_estudantes(IES, CURSO, GRAFICOS, dados1):
         maiorcount = max(y_masculino2)
         if(max(y_feminino2) > max(y_masculino2)):
           maiorcount = max(y_feminino2)
+          
+      if maiorcount > 500:
+        n = 250
+      else:
+        n = 50    
 
       cor_raca = ['Total', 'Brancos', 'Pretos', 'Pardos', 'Amarelos', 'Indígenas', 'Não Quis<br>Declarar', 'Não Informado']
 
       fig2 = go.Figure(data=[go.Bar(name = 'Homens', x = cor_raca, y = y_masculino2, text = y_masculino2, marker_pattern_shape="/"), go.Bar(name = 'Mulheres', x = cor_raca, y= y_feminino2, text = y_feminino2, marker_pattern_shape="x", marker_color='#f63366')])
 
       fig2.update_xaxes(tickfont_size=11)
-      fig2.update_yaxes(range = [0, maiorcount+50], tickfont_size=11, showgrid = False)
+      fig2.update_yaxes(range = [0, maiorcount+n], tickfont_size=11, showgrid = False)
       fig2.update_traces(textposition = 'outside', textfont_size=11)
       fig2.update_layout(title_text = f'Quantidade de Estudantes entre Homens e Mulheres por Cor/Raça no Curso de<br>{CURSO} da {IES} no Ano de 2019', legend=dict(yanchor = 'top', y = 1, xanchor = 'right', x = 1))
 
@@ -110,13 +121,18 @@ def grafico_estudantes(IES, CURSO, GRAFICOS, dados1):
         maiorcount = max(y_masculino3)
         if(max(y_feminino3) > max(y_masculino3)):
           maiorcount = max(y_feminino3)
+          
+      if maiorcount > 500:
+        n = 250
+      else:
+        n = 50    
 
       idades = ['Total', 'Até 20', '21 até 24', '25 até 28', '29 até 32', '33 até 36', 'Mais que 36']
 
       fig3 = go.Figure(data=[go.Bar(name = 'Homens', x = idades, y = y_masculino3, text = y_masculino3, marker_pattern_shape="/"), go.Bar(name = 'Mulheres', x = idades, y= y_feminino3, text = y_feminino3, marker_pattern_shape="x", marker_color='#f63366')])
 
       fig3.update_xaxes(title_text = 'Idades', tickfont_size=11)
-      fig3.update_yaxes(title_text = 'Estudantes', range = [0, maiorcount+50], tickfont_size=11, showgrid = False)
+      fig3.update_yaxes(title_text = 'Estudantes', range = [0, maiorcount+n], tickfont_size=11, showgrid = False)
       fig3.update_traces(textposition = 'outside', textfont_size=11)
       fig3.update_layout(title_text = f'Quantidade de Estudantes entre Homens e Mulheres por Idades no Curso de<br>{CURSO} da {IES} no Ano de 2019', legend=dict(yanchor = 'top', y = 1, xanchor = 'right', x = 1))
 
@@ -149,12 +165,17 @@ def grafico_estudantes(IES, CURSO, GRAFICOS, dados1):
         maiorcount = max(y_masculino4)
         if(max(y_feminino4) > max(y_masculino4)):
           maiorcount = max(y_feminino4)
+          
+      if maiorcount > 500:
+        n = 250
+      else:
+        n = 50    
 
       formas_de_ingresso = ['Total', 'Ingresso (Vestibular)', 'Ingresso (Enem)', 'Ingresso (Vagas Remanescentes)', 'Reserva de Vagas (Ensino Público)', 'Reserva de Vagas (Vagas Étnicas)', 'Reserva de Vagas (Renda Familiar)', 'Reserva de Vagas (Deficiência)', 'Outras Formas']
 
       fig4 = go.Figure(data=[go.Bar(name = 'Homens', x = y_masculino4, y = formas_de_ingresso, text = y_masculino4, marker_pattern_shape="/", orientation='h'), go.Bar(name = 'Mulheres', x = y_feminino4, y= formas_de_ingresso, text = y_feminino4, marker_pattern_shape="x", marker_color='#f63366', orientation='h')])
 
-      fig4.update_xaxes(range = [0, maiorcount+50], tickfont_size=11, showgrid = False)
+      fig4.update_xaxes(range = [0, maiorcount+n], tickfont_size=11, showgrid = False)
       fig4.update_yaxes(tickfont_size=11)
       fig4.update_traces(textposition = 'outside', textfont_size=11)
       fig4.update_layout(title_text = f'Quantidade de Estudantes entre Homens e Mulheres por Formas de Ingresso<br>no Curso de {CURSO} da {IES} no Ano de 2019', barmode='group', legend=dict(yanchor = 'top', y = 1, xanchor = 'right', x = 1))
@@ -210,13 +231,18 @@ def grafico_professores(IES, GRAFICOS, dados2):
         maiorcount = max(y_masculino1)
         if(max(y_feminino1) > max(y_masculino1)):
           maiorcount = max(y_feminino1)
+          
+      if maiorcount > 800:
+        n = 350
+      else:
+        n = 100  
 
       situacoes = ['Total', 'Em Exercício', 'Em Qualificação', 'Em Outra<br>Entidade', 'Afastados<br>(Saúde)', 'Afastados<br>(Outros)', 'Falecidos']
 
       fig1 = go.Figure(data=[go.Bar(name = 'Homens', x = situacoes, y = y_masculino1, text = y_masculino1, marker_pattern_shape="/"), go.Bar(name = 'Mulheres', x = situacoes, y= y_feminino1, text = y_feminino1, marker_pattern_shape="x", marker_color='#f63366')])
 
       fig1.update_xaxes(tickfont_size=11)
-      fig1.update_yaxes(range = [0, maiorcount+100], tickfont_size=11, showgrid = False)
+      fig1.update_yaxes(range = [0, maiorcount+n], tickfont_size=11, showgrid = False)
       fig1.update_traces(textposition = 'outside', textfont_size=11)
       fig1.update_layout(title_text = f'Quantidade de Professores entre Homens e Mulheres por Situações<br>da {IES} no Ano de 2019', legend=dict(yanchor = 'top', y = 1, xanchor = 'right', x = 1))
 
@@ -247,13 +273,18 @@ def grafico_professores(IES, GRAFICOS, dados2):
         maiorcount = max(y_masculino2)
         if(max(y_feminino2) > max(y_masculino2)):
           maiorcount = max(y_feminino2)
+          
+      if maiorcount > 800:
+        n = 350
+      else:
+        n = 100  
 
       cor_raca = ['Total', 'Brancos', 'Pretos', 'Pardos', 'Amarelos', 'Indígenas', 'Não Quis<br>Declarar', 'Não Informado']
 
       fig2 = go.Figure(data=[go.Bar(name = 'Homens', x = cor_raca, y = y_masculino2, text = y_masculino2, marker_pattern_shape="/"), go.Bar(name = 'Mulheres', x = cor_raca, y= y_feminino2, text = y_feminino2, marker_pattern_shape="x", marker_color='#f63366')])
 
       fig2.update_xaxes(tickfont_size=11)
-      fig2.update_yaxes(range = [0, maiorcount+100], tickfont_size=11, showgrid = False)
+      fig2.update_yaxes(range = [0, maiorcount+n], tickfont_size=11, showgrid = False)
       fig2.update_traces(textposition = 'outside', textfont_size=11)
       fig2.update_layout(title_text = f'Quantidade de Professores entre Homens e Mulheres por Cor/Raça<br>da {IES} no Ano de 2019', legend=dict(yanchor = 'top', y = 1, xanchor = 'right', x = 1))
 
@@ -282,13 +313,18 @@ def grafico_professores(IES, GRAFICOS, dados2):
         maiorcount = max(y_masculino3)
         if(max(y_feminino3) > max(y_masculino3)):
           maiorcount = max(y_feminino3)
+          
+      if maiorcount > 800:
+        n = 350
+      else:
+        n = 100  
 
       idades = ['Total', 'Até 30', '31 até 34', '35 até 38', '39 até 42', '43 até 46', 'Mais que 46']
 
       fig3 = go.Figure(data=[go.Bar(name = 'Homens', x = idades, y = y_masculino3, text = y_masculino3, marker_pattern_shape="/"), go.Bar(name = 'Mulheres', x = idades, y= y_feminino3, text = y_feminino3, marker_pattern_shape="x", marker_color='#f63366')])
 
       fig3.update_xaxes(title_text = 'Idades', tickfont_size=11)
-      fig3.update_yaxes(title_text = 'Professores', range = [0, maiorcount+100], tickfont_size=11, showgrid = False)
+      fig3.update_yaxes(title_text = 'Professores', range = [0, maiorcount+n], tickfont_size=11, showgrid = False)
       fig3.update_traces(textposition = 'outside', textfont_size=11)
       fig3.update_layout(title_text = f'Quantidade de Professores entre Homens e Mulheres por Idades<br>da {IES} no Ano de 2019', legend=dict(yanchor = 'top', y = 1, xanchor = 'right', x = 1))
        
@@ -436,11 +472,10 @@ def load_data_alunos():
   dados23_alunos = pd.read_csv('SUP_ALUNO23.CSV', sep='|', encoding='utf8')
   dados24_alunos = pd.read_csv('SUP_ALUNO24.CSV', sep='|', encoding='utf8')
   dados25_alunos = pd.read_csv('SUP_ALUNO25.CSV', sep='|', encoding='utf8')
-  dados_ALUNOS = pd.concat([dados1_alunos, dados2_alunos, dados3_alunos, dados4_alunos, dados5_alunos, dados6_alunos, dados7_alunos, dados8_alunos, dados9_alunos, dados10_alunos, dados11_alunos, dados12_alunos, dados13_alunos, dados14_alunos, dados15_alunos, dados16_alunos, dados17_alunos, dados18_alunos, dados19_alunos, dados20_alunos, dados21_alunos, dados22_alunos, dados23_alunos, dados24_alunos, dados25_alunos])
+  dados_ALUNOS = pd.concat([dados1_alunos, dados2_alunos, dados3_alunos, dados4_alunos, dados25_alunos])
   dados_IES = pd.read_csv('SUP_IES_2019.CSV', sep='|', encoding='utf8')
   dados_CURSO = pd.read_csv('SUP_CURSO_2019.CSV', sep='|', encoding='utf8')
   dados = dados_ALUNOS.merge(dados_IES, how='outer').merge(dados_CURSO, how='outer')
-  dados.sort_values(by=['SG_IES', 'NO_CURSO'], ignore_index=True, ascending=False)
   return dados
 
 @st.cache(allow_output_mutation=True, show_spinner=False)
@@ -449,7 +484,6 @@ def load_data_professores():
   dados_PROFESSORES = pd.read_csv('SUP_DOCENTE_2019.CSV', sep='|', encoding='utf8')
   dados_IES = pd.read_csv('SUP_IES_2019.CSV', sep='|', encoding='utf8')
   dados = dados_PROFESSORES.merge(dados_IES, how='outer')
-  dados.sort_values(by=['SG_IES'], ignore_index=True, ascending=False)
   return dados
 
 if __name__ == '__main__':
