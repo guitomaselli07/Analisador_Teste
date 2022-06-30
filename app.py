@@ -444,6 +444,7 @@ def professores(titulo, espaco1, descricao1, descricao2, dados2):
     descricao2.empty()
     grafico_professores(escolha_IES, escolha_GRAFICOS, dados2)
 
+@st.cache(allow_output_mutation=True, show_spinner=False)
 def load_data_alunos():
 
   dados1_alunos = pd.read_csv('SUP_ALUNO1.CSV', sep='|', encoding='utf8')
@@ -477,6 +478,7 @@ def load_data_alunos():
   dados = dados_ALUNOS.merge(dados_IES, how='outer').merge(dados_CURSO, how='outer')
   return dados
 
+@st.cache(allow_output_mutation=True, show_spinner=False)
 def load_data_professores():
 
   dados_PROFESSORES = pd.read_csv('SUP_DOCENTE_2019.CSV', sep='|', encoding='utf8')
