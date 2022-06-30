@@ -492,7 +492,7 @@ if __name__ == '__main__':
   titulo_inicial = st.title('Realizando a Leitura dos Dados...')
   espaco_inicial = st.subheader('')
   descricao_inicial = st.subheader('Por favor aguarde um momento, a aplicação já irá iniciar.')
-  dados1 = load_data_alunos
+  dados1 = load_data_alunos()
   dados2 = load_data_professores()
   titulo_inicial.empty()
   espaco_inicial.empty()
