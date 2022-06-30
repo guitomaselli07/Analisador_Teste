@@ -532,7 +532,7 @@ if __name__ == '__main__':
   parte3 = load_data_alunos3()
   parte4 = load_data_alunos4()
   parte5 = load_data_alunos5()
-  dados1 = pd.concat([parte1, parte2, parte3, parte4, parte5])
+  dados1 = pd.concat([parte1, parte2])
   dados2 = load_data_professores()
   titulo_inicial.empty()
   espaco_inicial.empty()
